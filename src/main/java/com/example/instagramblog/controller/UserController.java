@@ -1,5 +1,6 @@
 package com.example.instagramblog.controller;
 
+import com.example.instagramblog.dto.ResponseUser;
 import com.example.instagramblog.dto.UserDto;
 import com.example.instagramblog.model.User;
 import com.example.instagramblog.service.UserService;
@@ -17,8 +18,8 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping("/register")
-    public ResponseEntity<User> create(@RequestBody UserDto userDto){
-        User user = userService.create(userDto);
+    public ResponseEntity<ResponseUser> create(@RequestBody UserDto userDto){
+        ResponseUser user = userService.create(userDto);
         return ResponseEntity.ok(user);
     }
 }

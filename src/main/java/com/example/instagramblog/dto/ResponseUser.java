@@ -1,15 +1,15 @@
 package com.example.instagramblog.dto;
 
+import com.example.instagramblog.model.Role;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
-
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class UserDto {
+public class ResponseUser {
+    private Integer user_id;
     private String firstName;
     private String lastName;
     private String username;
@@ -18,7 +18,8 @@ public class UserDto {
     private Integer age;
     private String birthday;
     private String phone;
+    private String token;
+    private Role role;
     private String email;
-
-
+    private String registerDate;
 }
