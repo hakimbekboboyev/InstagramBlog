@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class ResponseUser {
-    private Integer user_id;
+
     private String firstName;
     private String lastName;
     private String username;
@@ -18,8 +18,7 @@ public class ResponseUser {
     private Integer age;
     private String birthday;
     private String phone;
-    private String token;
-    private Role role;
     private String email;
     private String registerDate;
+    private String token;
 }

@@ -23,11 +23,13 @@ public class User implements UserDetails {
     private Integer id;
     private String firstName;
     private String lastName;
+    @Column(unique = true)
     private String username;
     private String password;
     private String picture;
     private Integer age;
     private String birthday;
+    @Column(length = 13)
     private String phone;
     private String registerDate;
     @Enumerated(EnumType.STRING)
@@ -47,7 +49,7 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return email;
+        return username;
     }
 
     @Override

@@ -33,13 +33,14 @@ public class UserService {
         user.setPhone(userDto.getPhone());
         user.setRegisterDate((date.getDay()+17)+"."+(date.getMonth()+1)+"."+(date.getYear()+1900));
 
-        var jwtToken = jwtService.generateToken(user);
+
         User save_user = userRepository.save(user);
+        var jwtToken = jwtService.generateToken(save_user);
 
         ResponseUser responseUser = new ResponseUser();
         responseUser.setToken(jwtToken);
         responseUser.setPassword(save_user.getPassword());
-        responseUser.setUser_id(save_user.getId());
+
         responseUser.setAge(save_user.getAge());
         responseUser.setBirthday(save_user.getBirthday());
         responseUser.setPhone(save_user.getPhone());
@@ -47,7 +48,7 @@ public class UserService {
         responseUser.setPicture(save_user.getPicture());
         responseUser.setFirstName(save_user.getFirstName());
         responseUser.setLastName(save_user.getLastName());
-        responseUser.setRole(save_user.getRole());
+
         responseUser.setEmail(save_user.getEmail());
         responseUser.setRegisterDate(save_user.getRegisterDate());
         return responseUser;
