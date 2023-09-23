@@ -7,6 +7,7 @@ import com.example.instagramblog.model.User;
 import com.example.instagramblog.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -16,22 +17,24 @@ import java.util.Date;
 public class UserService {
     private final UserRepository userRepository;
 
+    private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     public ResponseUser create(UserDto userDto){
         Date date = new Date();
+
         User user = new User();
         user.setAge(userDto.getAge());
         user.setBirthday(userDto.getBirthday());
         user.setFirstName(userDto.getFirstName());
         user.setLastName(userDto.getLastName());
         user.setUsername(userDto.getUsername());
-        user.setPassword(userDto.getPassword());
+        user.setPassword(passwordEncoder.encode(userDto.getPassword()));
         user.setPicture(userDto.getPicture());
         user.setEmail(userDto.getEmail());
 
         user.setRole(Role.USER);
         user.setPhone(userDto.getPhone());
-        user.setRegisterDate((date.getDay()+17)+"."+(date.getMonth()+1)+"."+(date.getYear()+1900));
+        user.setRegisterDate((+17)+"."+(date.getMonth()+1)+"."+(date.getYear()+1900));
 
 
         User save_user = userRepository.save(user);
@@ -48,7 +51,6 @@ public class UserService {
         responseUser.setPicture(save_user.getPicture());
         responseUser.setFirstName(save_user.getFirstName());
         responseUser.setLastName(save_user.getLastName());
-
         responseUser.setEmail(save_user.getEmail());
         responseUser.setRegisterDate(save_user.getRegisterDate());
         return responseUser;
